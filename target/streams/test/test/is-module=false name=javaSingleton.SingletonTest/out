@@ -1,0 +1,3 @@
+[0m[[0minfo[0m] [0m[34mTest run started[0m[0m
+[0m[[0minfo[0m] [0mTest javaSingleton.[33mSingletonTest[0m.[36mitShouldLazyInit[0m started[0m
+[0m[[0minfo[0m] [0m[34mTest run finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 1 total, 0.024s[0m[0m

@@ -1,0 +1,11 @@
+[0m[[0minfo[0m] [0m[32mScalaBeanTest:[0m[0m
+[0m[[0minfo[0m] [0m[32mSingletonTest:[0m[0m
+[0m[[0minfo[0m] [0m[32m- should init lazy[0m[0m
+[0m[[0minfo[0m] [0m[32m- should require a model[0m[0m
+[0m[[0minfo[0m] [0m[32m- should optionally allow mileage[0m[0m
+[0m[[0minfo[0m] [0m[32m- should require mileage is zero or positive[0m[0m
+[0m[[0minfo[0m] [0m[32m- should require the model is not an empty string[0m[0m
+[0m[[0minfo[0m] [0m[32m- should allow you to adjust the mileage, but not the model[0m[0m
+[0m[[0minfo[0m] [0m[32m- supports deep copy[0m[0m
+[0m[[0minfo[0m] [0m[32m- supports deep compare[0m[0m
+[0m[[0minfo[0m] [0m[32m- has a pretty toString()[0m[0m
