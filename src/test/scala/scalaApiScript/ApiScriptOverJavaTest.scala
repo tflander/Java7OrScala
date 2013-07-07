@@ -1,5 +1,7 @@
 package scalaApiScript
 import org.scalatest._
+
+import scalaApiScriptOverJava.ApiWrapper;
 import javaSupport.api.ApiStatus._
 import javaSupport.api.OriginalApi
 import javaSupport.api.OperationResult

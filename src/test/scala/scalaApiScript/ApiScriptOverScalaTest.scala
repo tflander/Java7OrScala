@@ -2,13 +2,14 @@ package scalaApiScript
 import org.scalatest._
 import scalaSupport.api._
 import scalaSupport.api.ApiStatus._
+import scalaApiScriptOverScala.ApiWrapper
 
 class ApiScriptOverScalaTest extends FunSpec with ShouldMatchers {
   
   it("should allow you to pass script a single API call") {
 	  val result = ApiWrapper.call(_.operationOne("test"))
-	  result.getStatus should be(OK)
-	  result.getMessage should be("operationOne performed on test")
+	  result.status should be(OK)
+	  result.message should be("operationOne performed on test")
   }
   
   it("should allow you to pass multiple operations to the API") {
@@ -19,8 +20,8 @@ class ApiScriptOverScalaTest extends FunSpec with ShouldMatchers {
       
 	  val results = ApiWrapper.call(operations)
 	  
-	  results map (_.getStatus()) should be (Seq(OK, OK))
-	  results map (_.getMessage()) should be (Seq(
+	  results map (_.status) should be (Seq(OK, OK))
+	  results map (_.message) should be (Seq(
 	      "operationOne performed on test", 
 	      "operationTwo performed on testing 123"))
   }

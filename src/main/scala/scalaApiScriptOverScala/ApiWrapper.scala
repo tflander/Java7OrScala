@@ -1,10 +1,9 @@
-package scalaApiScript
+package scalaApiScriptOverScala
 
-import javaSupport.api.OperationResult;
-import javaSupport.api.OriginalApi;
+import scalaSupport.api.OriginalApi
+import scalaSupport.api.OperationResult
 
 object ApiWrapper {
-  
   def call(command: OriginalApi => OperationResult): OperationResult = {
       return call(Seq(command)).head
   }
