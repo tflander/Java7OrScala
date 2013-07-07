@@ -20,9 +20,9 @@ class ApiScriptOverScalaTest extends FunSpec with ShouldMatchers {
       
 	  val results = ApiWrapper.call(operations)
 	  
-	  results map (_.status) should be (Seq(OK, OK))
-	  results map (_.message) should be (Seq(
-	      "operationOne performed on test", 
-	      "operationTwo performed on testing 123"))
+	  results should be(Seq(
+	      OperationResult(OK, "operationOne performed on test"),
+	      OperationResult(OK, "operationTwo performed on testing 123")
+	  ))
   }
 }
