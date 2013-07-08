@@ -20,7 +20,8 @@ There is a lot of overhead for java beans, especially if you want to handle equa
 Only the Lonely:  Singletons
 ----------------------------
 
-Packages:  javaSingleton & scalaSingleton
+Packages:  [javaSingleton](https://github.com/tflander/Java7OrScala/tree/master/src/main/java/javaSingleton) & 
+[scalaSingleton](https://github.com/tflander/Java7OrScala/tree/master/src/main/scala/scalaSingleton)
 
 Another example based on the work of Venkat Subramaniam.  He describes the Singleton pattern in Java as a pattern that takes one hour to learn and six months to debug.
 
@@ -28,21 +29,26 @@ Another example based on the work of Venkat Subramaniam.  He describes the Singl
 To Be or Not To Be: Optional Things
 -------------------------------------
 
-Packages:  javaOption & ScalaOption
+Packages:  [javaOption](https://github.com/tflander/Java7OrScala/tree/master/src/main/scala/scalaOption) 
+& [ScalaOption](https://github.com/tflander/Java7OrScala/tree/master/src/main/scala/scalaOption)
 
 Scala has an easy answer to a common problem in Java.  Bugs in Java often appear as a thrown NullPointerException.  This occurs when a developer does not expect a null referece to an object, but it happens.  Scala's easy answer is to never use null to represent optional data.  While there are patterns in Java to avoid nulls, it seems more fair for the example code to show the more common approach of adding null checks.
 
 Family Ties: Polymorphic Behavior
 -----------------------------------
 
-Packages:  javaKinds & scalaKinds
+Packages:  [javaKinds](https://github.com/tflander/Java7OrScala/tree/master/src/main/java/javaKinds) 
+& [scalaKinds](https://github.com/tflander/Java7OrScala/tree/master/src/main/scala/scalaKinds)
 
 This example demonstrates how useful it can be to package up related code into a single source code file.  Most of the code in the Java example is boilerplate code.  Boilerplate code is code that is necessary for the compiler, but not necessary to express the intent of the developer's design.  This example also demonstrates scala functions as first-class objects.
 
 Penmanship: API Scripting
 -------------------------
 
-Packages:  javaApiScriptOverJava, scalaApiScriptOverJava, javaApiScriptOverScala, scalaApiScriptOverScala
+Packages:  [javaApiScriptOverJava](https://github.com/tflander/Java7OrScala/tree/master/src/main/java/javaApiScriptOverJava), 
+[scalaApiScriptOverJava](https://github.com/tflander/Java7OrScala/tree/master/src/main/scala/scalaApiScriptOverJava), 
+[javaApiScriptOverScala](), 
+[scalaApiScriptOverScala](https://github.com/tflander/Java7OrScala/tree/master/src/main/scala/scalaApiScriptOverScala)
 
 A common programming task is to take a generic API and wrap it for a specific purpose.  Also, many API's require some kind of initialization and/or tear-down that could be mishandled.  Programmers mitigate this risk through inversion of control.  
 
