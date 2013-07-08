@@ -12,14 +12,10 @@ The Examples
 Musical Fruit:  Beans (aka Value Objects, Data Transfer Objects)
 ----------------------------------------------------------------
 
-Packages:  [javabean](https://github.com/tflander/Java7OrScala/tree/master/src/main/java/javabean) & 
-[scalabean](https://github.com/tflander/Java7OrScala/tree/master/src/main/scala/scalabean)
-
-
 Packages:  
-[javabean](https://github.com/tflander/Java7OrScala/tree/master/src/main/java/javabean) & 
+[javabean](https://github.com/tflander/Java7OrScala/tree/master/src/main/java/javabean)
 [(tests)](https://github.com/tflander/Java7OrScala/tree/master/src/test/java/javabean)
-[scalabean](https://github.com/tflander/Java7OrScala/tree/master/src/main/scala/scalabean)
+& [scalabean](https://github.com/tflander/Java7OrScala/tree/master/src/main/scala/scalabean)
 [(tests)](https://github.com/tflander/Java7OrScala/tree/master/src/test/scala/scalabean)
 
 
@@ -28,8 +24,10 @@ There is a lot of overhead for java beans, especially if you want to handle equa
 Only the Lonely:  Singletons
 ----------------------------
 
-Packages:  [javaSingleton](https://github.com/tflander/Java7OrScala/tree/master/src/main/java/javaSingleton) & 
-[scalaSingleton](https://github.com/tflander/Java7OrScala/tree/master/src/main/scala/scalaSingleton)
+Packages:  [javaSingleton](https://github.com/tflander/Java7OrScala/tree/master/src/main/java/javaSingleton)
+[(tests)](https://github.com/tflander/Java7OrScala/tree/master/src/test/java/javaSingleton)
+& [scalaSingleton](https://github.com/tflander/Java7OrScala/tree/master/src/main/scala/scalaSingleton)
+[(tests)](https://github.com/tflander/Java7OrScala/tree/master/src/test/scala/scalaSingleton)
 
 Another example based on the work of Venkat Subramaniam.  He describes the Singleton pattern in Java as a pattern that takes one hour to learn and six months to debug.
 
@@ -38,25 +36,37 @@ To Be or Not To Be: Optional Things
 -------------------------------------
 
 Packages:  [javaOption](https://github.com/tflander/Java7OrScala/tree/master/src/main/scala/scalaOption) 
+[(tests)](https://github.com/tflander/Java7OrScala/tree/master/src/test/java/javaOption)
 & [ScalaOption](https://github.com/tflander/Java7OrScala/tree/master/src/main/scala/scalaOption)
+[(tests)](https://github.com/tflander/Java7OrScala/tree/master/src/test/scala/scalaOption)
 
 Scala has an easy answer to a common problem in Java.  Bugs in Java often appear as a thrown NullPointerException.  This occurs when a developer does not expect a null referece to an object, but it happens.  Scala's easy answer is to never use null to represent optional data.  While there are patterns in Java to avoid nulls, it seems more fair for the example code to show the more common approach of adding null checks.
 
 Family Ties: Polymorphic Behavior
 -----------------------------------
 
-Packages:  [javaKinds](https://github.com/tflander/Java7OrScala/tree/master/src/main/java/javaKinds) 
+Packages:  
+[javaKinds](https://github.com/tflander/Java7OrScala/tree/master/src/main/java/javaKinds) 
+[(tests)](https://github.com/tflander/Java7OrScala/tree/master/src/test/java/javaKinds)
 & [scalaKinds](https://github.com/tflander/Java7OrScala/tree/master/src/main/scala/scalaKinds)
+[(tests)](https://github.com/tflander/Java7OrScala/tree/master/src/test/scala/scalaKinds)
 
 This example demonstrates how useful it can be to package up related code into a single source code file.  Most of the code in the Java example is boilerplate code.  Boilerplate code is code that is necessary for the compiler, but not necessary to express the intent of the developer's design.  This example also demonstrates scala functions as first-class objects.
 
 Penmanship: API Scripting
 -------------------------
 
-Packages:  [javaApiScriptOverJava](https://github.com/tflander/Java7OrScala/tree/master/src/main/java/javaApiScriptOverJava), 
-[scalaApiScriptOverJava](https://github.com/tflander/Java7OrScala/tree/master/src/main/scala/scalaApiScriptOverJava), 
-[javaApiScriptOverScala](https://github.com/tflander/Java7OrScala/tree/master/src/main/java/javaApiScriptOverScala), 
+Packages:  
+[javaApiScriptOverJava](https://github.com/tflander/Java7OrScala/tree/master/src/main/java/javaApiScriptOverJava)[(tests)](https://github.com/tflander/Java7OrScala/tree/master/src/test/java/javaApiScript)
+, 
+[scalaApiScriptOverJava](https://github.com/tflander/Java7OrScala/tree/master/src/main/scala/scalaApiScriptOverJava)
+[(tests)](https://github.com/tflander/Java7OrScala/tree/master/src/test/scala/scalaApiScript)
+, 
+[javaApiScriptOverScala](https://github.com/tflander/Java7OrScala/tree/master/src/main/java/javaApiScriptOverScala)
+[(tests)](https://github.com/tflander/Java7OrScala/tree/master/src/test/java/javaApiScript)
+, 
 [scalaApiScriptOverScala](https://github.com/tflander/Java7OrScala/tree/master/src/main/scala/scalaApiScriptOverScala)
+[(tests)](https://github.com/tflander/Java7OrScala/tree/master/src/test/scala/scalaApiScript)
 
 A common programming task is to take a generic API and wrap it for a specific purpose.  Also, many API's require some kind of initialization and/or tear-down that could be mishandled.  Programmers mitigate this risk through inversion of control.  
 
