@@ -13,15 +13,15 @@ public class ApiScriptOverScalaTest {
 
 	@Test
 	public void itShouldAllowYouToScriptASingleApiCall() {
-		ApiOperationOverScala apiOperation = new ApiOperationOne("test");
+		ApiOperationOverScala apiOperation = new ApiOperationOneOverScala("test");
 		OperationResult result = ApiWrapperOverScala.call(apiOperation);
 		verifyResult(result, ApiStatus.OK(), "operationOne performed on test");
 	}
 
 	@Test
 	public void itShouldAllowYouToPassMultipleOperationsToTheApi() {
-		ApiOperationOverScala apiOperation1 = new ApiOperationOne("test");
-		ApiOperationOverScala apiOperation2 = new ApiOperationTwo("testing", 123);
+		ApiOperationOverScala apiOperation1 = new ApiOperationOneOverScala("test");
+		ApiOperationOverScala apiOperation2 = new ApiOperationTwoOverScala("testing", 123);
 		List<OperationResult> results = ApiWrapperOverScala.call(apiOperation1, apiOperation2);
 		assertEquals(results.size(), 2);
 		verifyResult(results.get(0), ApiStatus.OK(), "operationOne performed on test");

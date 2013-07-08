@@ -3,11 +3,11 @@ package javaApiScript;
 import scalaSupport.api.ApiStatus;
 import scalaSupport.api.OperationResult;
 
-public class ApiOperationOne implements ApiOperationOverScala {
+public class ApiOperationOneOverScala implements ApiOperationOverScala {
 
 	private String param;
 
-	public ApiOperationOne(String param) {
+	public ApiOperationOneOverScala(String param) {
 		this.param = param;
 	}
 
