@@ -15,6 +15,14 @@ Musical Fruit:  Beans (aka Value Objects, Data Transfer Objects)
 Packages:  [javabean](https://github.com/tflander/Java7OrScala/tree/master/src/main/java/javabean) & 
 [scalabean](https://github.com/tflander/Java7OrScala/tree/master/src/main/scala/scalabean)
 
+
+Packages:  
+[javabean](https://github.com/tflander/Java7OrScala/tree/master/src/main/java/javabean) & 
+[(tests)](https://github.com/tflander/Java7OrScala/tree/master/src/test/java/javabean)
+[scalabean](https://github.com/tflander/Java7OrScala/tree/master/src/main/scala/scalabean)
+[(tests)](https://github.com/tflander/Java7OrScala/tree/master/src/test/scala/scalabean)
+
+
 There is a lot of overhead for java beans, especially if you want to handle equals() and have a pretty toString().  Since scala case classes give you this behavior out-of-the box, it was only fair that the behavior is reproduced in the java bean.  Most of this example comes from the work of Venkat Subramaniam.  He says people often object that their IDE can generate most of the boilerplate code necessary for defining beans in Java.  Venkat refers to this as "IDE vomit", when you need an IDE to vomit out code that you need to make the compiler happy.
 
 Only the Lonely:  Singletons
@@ -47,7 +55,7 @@ Penmanship: API Scripting
 
 Packages:  [javaApiScriptOverJava](https://github.com/tflander/Java7OrScala/tree/master/src/main/java/javaApiScriptOverJava), 
 [scalaApiScriptOverJava](https://github.com/tflander/Java7OrScala/tree/master/src/main/scala/scalaApiScriptOverJava), 
-[javaApiScriptOverScala](), 
+[javaApiScriptOverScala](https://github.com/tflander/Java7OrScala/tree/master/src/main/java/javaApiScriptOverScala), 
 [scalaApiScriptOverScala](https://github.com/tflander/Java7OrScala/tree/master/src/main/scala/scalaApiScriptOverScala)
 
 A common programming task is to take a generic API and wrap it for a specific purpose.  Also, many API's require some kind of initialization and/or tear-down that could be mishandled.  Programmers mitigate this risk through inversion of control.  
