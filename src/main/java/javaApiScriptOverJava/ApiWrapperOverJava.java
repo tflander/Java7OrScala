@@ -1,4 +1,4 @@
-package javaApiScript;
+package javaApiScriptOverJava;
 
 import java.util.ArrayList;
 import java.util.List;

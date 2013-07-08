@@ -1,4 +1,4 @@
-package javaApiScript;
+package javaApiScriptOverScala;
 
 import scalaSupport.api.ApiStatus;
 import scalaSupport.api.OperationResult;

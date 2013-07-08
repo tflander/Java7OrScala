@@ -1,4 +1,4 @@
-package javaApiScript;
+package javaApiScriptOverJava;
 
 import javaSupport.api.OperationResult;
 

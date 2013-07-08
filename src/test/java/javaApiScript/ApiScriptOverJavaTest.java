@@ -6,6 +6,11 @@ import java.util.List;
 
 import org.junit.Test;
 
+
+import javaApiScriptOverJava.ApiOperationOneOverJava;
+import javaApiScriptOverJava.ApiOperationOverJava;
+import javaApiScriptOverJava.ApiOperationTwoOverJava;
+import javaApiScriptOverJava.ApiWrapperOverJava;
 import javaSupport.api.ApiStatus;
 import javaSupport.api.OperationResult;
 

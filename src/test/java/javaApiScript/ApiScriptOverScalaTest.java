@@ -4,7 +4,13 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
+import javaApiScriptOverScala.ApiOperationOneOverScala;
+import javaApiScriptOverScala.ApiOperationOverScala;
+import javaApiScriptOverScala.ApiOperationTwoOverScala;
+import javaApiScriptOverScala.ApiWrapperOverScala;
+
 import org.junit.Test;
+
 
 import scalaSupport.api.ApiStatus;
 import scalaSupport.api.OperationResult;
