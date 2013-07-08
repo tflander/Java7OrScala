@@ -21,24 +21,10 @@ public class ApiWrapperOverScala {
 		
 		List<OperationResult> results = new ArrayList<OperationResult>();
 		for (ApiOperationOverScala apiOperation : apiOperations) {
-			results.add(execOperation(apiOperation, api));
+			results.add(apiOperation.execute());
 		}
 
 		api.close();
 		return results;
 	}
-
-	private static OperationResult execOperation(ApiOperationOverScala apiOperation, OriginalApi api) {
-		switch(apiOperation.getOperation()) {
-		case OPERATION_ONE:
-			StringOperationParam operationParam = (StringOperationParam) apiOperation.getOperationParams()[0];
-			return api.operationOne(operationParam.getValue());
-		case OPERATION_TWO:
-			StringOperationParam operationParam1 = (StringOperationParam) apiOperation.getOperationParams()[0];
-			IntegerOperationParam operationParam2 = (IntegerOperationParam) apiOperation.getOperationParams()[1];
-			return api.operationTwo(operationParam1.getValue(), operationParam2.getValue());
-		}
-		return null;
-	}
-
 }
