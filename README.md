@@ -35,7 +35,7 @@ Another example based on the work of Venkat Subramaniam.  He describes the Singl
 To Be or Not To Be: Optional Things
 -------------------------------------
 
-Packages:  [javaOption](https://github.com/tflander/Java7OrScala/tree/master/src/main/scala/scalaOption) 
+Packages:  [javaOption](https://github.com/tflander/Java7OrScala/tree/master/src/main/java/javaOption) 
 [(tests)](https://github.com/tflander/Java7OrScala/tree/master/src/test/java/javaOption)
 & [ScalaOption](https://github.com/tflander/Java7OrScala/tree/master/src/main/scala/scalaOption)
 [(tests)](https://github.com/tflander/Java7OrScala/tree/master/src/test/scala/scalaOption)
