@@ -5,27 +5,27 @@ case class Sample(
   sex: String,
   position: String)
 
-case class Summary(name: String, value: String, count: Int)
+case class Summary(value: String, count: Int)
 
 object Aggregator {
 
   def femalesByParty(rawData: Seq[Sample]): Map[String, Seq[Summary]] = {
-    filterGroupByAnySummerizeByPosition(_.sex == "Female", "party", rawData)
+    filterGroupByAndSummerize(_.sex == "Female", "party", "position", rawData)
   }
 
   def malesByParty(rawData: Seq[Sample]): Map[String, Seq[Summary]] = {
-    filterGroupByAnySummerizeByPosition(_.sex == "Male", "party", rawData)
+    filterGroupByAndSummerize(_.sex == "Male", "party", "position", rawData)
   }
-  
+
   def democratsBySex(rawData: Seq[Sample]): Map[String, Seq[Summary]] = {
-    filterGroupByAnySummerizeByPosition(_.party == "Democrat", "sex", rawData)
+    filterGroupByAndSummerize(_.party == "Democrat", "sex", "position", rawData)
   }
-  
+
   def republicansBySex(rawData: Seq[Sample]): Map[String, Seq[Summary]] = {
-    filterGroupByAnySummerizeByPosition(_.party == "Republican", "sex", rawData)
+    filterGroupByAndSummerize(_.party == "Republican", "sex", "position", rawData)
   }
-  
-  def groupByValue(sample: Sample, fieldName: String): String = {
+
+  private def valueForFieldName(sample: Sample, fieldName: String): String = {
     fieldName match {
       case "party" => sample.party
       case "sex" => sample.sex
@@ -34,28 +34,28 @@ object Aggregator {
     }
   }
 
-  def filterAndGroupBy(rawDataFilter: Sample => Boolean, groupFieldName: String, rawData: Seq[Sample]): Map[String, Seq[Sample]] = {
-    rawData.filter(rawDataFilter)
-      .groupBy(groupByValue(_, groupFieldName))
+  def filterGroupByAndSummerize(rawDataFilter: Sample => Boolean, groupFieldName: String, summaryFieldName: String, rawData: Seq[Sample]): Map[String, Seq[Summary]] = {
+    groupByAndSummerize(groupFieldName, summaryFieldName, rawData.filter(rawDataFilter))
   }
 
-  def filterGroupByAnySummerizeByPosition(rawDataFilter: Sample => Boolean, groupFieldName: String, rawData: Seq[Sample]): Map[String, Seq[Summary]] = {
-    filterAndGroupBy(rawDataFilter, groupFieldName, rawData)
-      .mapValues(summarizeSamplesByPosition(_))
+  def groupByAndSummerize(groupFieldName: String, summaryFieldName: String, rawData: Seq[Sample]): Map[String, Seq[Summary]] = {
+    
+    val groups = rawData.groupBy(valueForFieldName(_, summaryFieldName)).keys.toSeq
+    
+    rawData.groupBy(valueForFieldName(_, groupFieldName))
+      .mapValues(summarizeSamples(summaryFieldName, _, groups))
   }
   
-  private def summarizeSamplesByPosition(samples: Seq[Sample]): Seq[Summary] = {
-    val filteredSampleCount = samples.filter(_.position == "For").size
-    Seq(
-      Summary("position", "For", filteredSampleCount),
-      Summary("position", "Against", samples.size - filteredSampleCount))
+  def summarizeSamples(fieldName: String, samples: Seq[Sample], groups: Seq[String]): Seq[Summary] = {
+
+    val filteredGroups = samples.groupBy(valueForFieldName(_, fieldName))
+      .mapValues(samples => samples.size)
+      
+    groups.map { group =>
+      val count = filteredGroups.getOrElse(group, 0)
+      Summary(group, count)
+    }
+    
   }
-  
-  def summarizeBySex(samples: Seq[Sample]): Seq[Summary] = {
-    val filteredSampleCount = samples.filter(_.sex == "Male").size
-    Seq(
-      Summary("sex", "Male", filteredSampleCount),
-      Summary("sex", "Female", samples.size - filteredSampleCount))
-  }
-  
+
 }

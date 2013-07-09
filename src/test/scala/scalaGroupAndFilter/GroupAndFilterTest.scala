@@ -2,6 +2,7 @@ package scalaGroupAndFilter
 import org.scalatest._
 
 class GroupAndFilterTest extends FunSpec with ShouldMatchers {
+  
   val rawData = Seq(
     Sample(party = "Democrat", sex = "Male", position = "Against"),
     Sample(party = "Republican", sex = "Male", position = "Against"),
@@ -16,12 +17,12 @@ class GroupAndFilterTest extends FunSpec with ShouldMatchers {
     val summary = Aggregator.femalesByParty(rawData)
 
     summary.get("Democrat").head should be(Seq(
-      Summary("position", "For", 2),
-      Summary("position", "Against", 0)))
+      Summary("For", 2),
+      Summary("Against", 0)))
     
     summary.get("Republican").head should be(Seq(
-      Summary("position", "For", 1),
-      Summary("position", "Against", 1)))
+      Summary("For", 1),
+      Summary("Against", 1)))
     
   }
   
@@ -29,12 +30,12 @@ class GroupAndFilterTest extends FunSpec with ShouldMatchers {
     val summary = Aggregator.malesByParty(rawData)
 
     summary.get("Democrat").head should be(Seq(
-      Summary("position", "For", 1),
-      Summary("position", "Against", 1)))
+      Summary("For", 1),
+      Summary("Against", 1)))
     
     summary.get("Republican").head should be(Seq(
-      Summary("position", "For", 0),
-      Summary("position", "Against", 2)))
+      Summary("For", 0),
+      Summary("Against", 2)))
     
   }
   
@@ -42,37 +43,48 @@ class GroupAndFilterTest extends FunSpec with ShouldMatchers {
     val summary = Aggregator.democratsBySex(rawData)
 
     summary.get("Male").head should be(Seq(
-      Summary("position", "For", 1),
-      Summary("position", "Against", 1)))
+      Summary("For", 1),
+      Summary("Against", 1)))
     
     summary.get("Female").head should be(Seq(
-      Summary("position", "For", 2),
-      Summary("position", "Against", 0)))
+      Summary("For", 2),
+      Summary("Against", 0)))
   }
   
   it("Should summarize Republicans by sex") {
     val summary = Aggregator.republicansBySex(rawData)
 
     summary.get("Male").head should be(Seq(
-      Summary("position", "For", 0),
-      Summary("position", "Against", 2)))
+      Summary("For", 0),
+      Summary("Against", 2)))
     
     summary.get("Female").head should be(Seq(
-      Summary("position", "For", 1),
-      Summary("position", "Against", 1)))
+      Summary("For", 1),
+      Summary("Against", 1)))
   }
   
   it("can use generic method to group by position and summarize by sex") {
-    val summary = Aggregator.filterAndGroupBy(_ => true, "position", rawData)
-    		.mapValues(Aggregator.summarizeBySex(_))
+    val summary = Aggregator.groupByAndSummerize("position", "sex", rawData)
     
     summary.get("For").head should be(Seq(
-      Summary("sex", "Male", 1),
-      Summary("sex", "Female", 3)))
+      Summary("Male", 1),
+      Summary("Female", 3)))
     
     summary.get("Against").head should be(Seq(
-      Summary("sex", "Male", 3),
-      Summary("sex", "Female", 1)))
-    
+      Summary("Male", 3),
+      Summary("Female", 1)))
   }
+  
+  it("can use generic method to filter by party, group by position, and summarize by sex") {
+    val summary = Aggregator.filterGroupByAndSummerize(_.party == "Democrat", "position", "sex", rawData)
+    
+    summary.get("For").head should be(Seq(
+      Summary("Male", 1),
+      Summary("Female", 2)))
+    
+    summary.get("Against").head should be(Seq(
+      Summary("Male", 1),
+      Summary("Female", 0)))
+  }
+  
 }
