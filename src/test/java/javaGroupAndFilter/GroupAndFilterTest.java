@@ -82,31 +82,56 @@ public class GroupAndFilterTest {
 		assertEquals("Against", womenAgainst.getValue());
 		assertEquals(0, womenAgainst.getCount());
 	}
+	
+	@Test 
+	public void itShouldSummarizeRepublicansBySex() {
+		List<Sample> rawData = buildSampleData();
+		Map<String, List<Summary>> summary = Aggregator.republicansBySex(rawData);
+		
+		List<Summary> men = summary.get("Male");
+		List<Summary> women = summary.get("Female");
+		
+		assertEquals(2, men.size());
+		assertEquals(2, women.size());
+		Summary menFor = men.get(0);
+		Summary menAgainst = men.get(1);
+		Summary womenFor = women.get(0);
+		Summary womenAgainst = women.get(1);
+		assertEquals("For", menFor.getValue());
+		assertEquals(0, menFor.getCount());
+		assertEquals("Against", menAgainst.getValue());
+		assertEquals(2, menAgainst.getCount());
+		assertEquals("For", womenFor.getValue());
+		assertEquals(1, womenFor.getCount());
+		assertEquals("Against", womenAgainst.getValue());
+		assertEquals(1, womenAgainst.getCount());
+	}
+	
+	@Test @Ignore
+	public void itCanUseGenericMethodToGroupByPositionAndSummarizeBySex() {
+		List<Sample> rawData = buildSampleData();
+		Map<String, List<Summary>> summary = Aggregator.groupByAndSummerize("position", "sex", rawData);
+		
+		List<Summary> forIt = summary.get("For");
+		List<Summary> againstIt = summary.get("Against");
+		
+		assertEquals(2, forIt.size());
+		assertEquals(2, againstIt.size());
+		Summary menFor = forIt.get(0);
+		Summary womenFor = forIt.get(1);
+		Summary menAgainst = againstIt.get(0);
+		Summary womenAgainst = againstIt.get(1);
+		assertEquals("Male", menFor.getValue());
+		assertEquals(1, menFor.getCount());
+		assertEquals("Female", womenFor.getValue());
+		assertEquals(3, womenFor.getCount());
+		assertEquals("Male", menAgainst.getValue());
+		assertEquals(3, menAgainst.getCount());
+		assertEquals("Female", womenAgainst.getValue());
+		assertEquals(1, womenAgainst.getCount());
+	}
+	
 	/*
-  it("Should summarize Democrats by sex") {
-    val summary = Aggregator.democratsBySex(rawData)
-
-    summary.get("Male").head should be(Seq(
-      Summary("For", 1),
-      Summary("Against", 1)))
-    
-    summary.get("Female").head should be(Seq(
-      Summary("For", 2),
-      Summary("Against", 0)))
-  }
-  
-  it("Should summarize Republicans by sex") {
-    val summary = Aggregator.republicansBySex(rawData)
-
-    summary.get("Male").head should be(Seq(
-      Summary("For", 0),
-      Summary("Against", 2)))
-    
-    summary.get("Female").head should be(Seq(
-      Summary("For", 1),
-      Summary("Against", 1)))
-  }
-  
   it("can use generic method to group by position and summarize by sex") {
     val summary = Aggregator.groupByAndSummerize("position", "sex", rawData)
     
