@@ -1,6 +1,7 @@
 package javaGroupAndFilter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,31 +27,46 @@ public class Aggregator {
 
 	public static Map<String, List<Summary>> groupByAndSummerize(String groupField,
 			String summaryField, List<Sample> rawData) {
-		// TODO:  support summary field
-		List<String> summaryValues = null;
-		return groupByField(groupField, summaryValues, rawData);
+		List<String> summaryValues = getSummaryValues(summaryField, rawData);
+		return groupByField(groupField, summaryField, summaryValues, rawData);
 	}
 	
+	private static List<String> getSummaryValues(String summaryField,
+			List<Sample> rawData) {
+		List<String> summaryValues = new ArrayList<String>();
+		for (Sample sample : rawData) {
+			String fieldValue =  getFieldForSample(summaryField, sample);
+			if(!summaryValues.contains(fieldValue)) {
+				summaryValues.add(fieldValue);
+				if(summaryValues.size() == 2) {
+					break;
+				}
+			}
+		}
+		Collections.sort(summaryValues);
+		return summaryValues;
+	}
+
 	private static Map<String, List<Summary>> filterGroupAndSummarize(String filterField, String filterValue, String groupField, List<Sample> rawData) {
 		List<Sample> filtered = filterByField(filterField, filterValue, rawData);
-		List<String> summaryValues = null;
-		return groupByField(groupField, summaryValues, filtered);
+		List<String> summaryValues = getSummaryValues("position", rawData);  // TODO:  make parameter
+		return groupByField(groupField, "position", summaryValues, filtered);
 	}
 	
-	private static Map<String, List<Summary>> groupByField(String fieldName, List<String> summaryValues,
+	private static Map<String, List<Summary>> groupByField(String groupFieldName, String summaryFieldName, List<String> summaryValues,
 			List<Sample> samples) {
 		HashMap<String, List<Summary>> grouped = new HashMap<String, List<Summary>>();
 		for (Sample sample : samples) {
-			String key = getFieldForSample(fieldName, sample);
+			String key = getFieldForSample(groupFieldName, sample);
 			List<Summary> summaryList = grouped.get(key);
 			if (summaryList == null) {
 				summaryList = new ArrayList<Summary>();
 				grouped.put(key, summaryList);
-				summaryList.add(new Summary("For", 0));
-				summaryList.add(new Summary("Against", 0));
+				summaryList.add(new Summary(summaryValues.get(0), 0));
+				summaryList.add(new Summary(summaryValues.get(1), 0));
 			}
 			for (Summary summary : summaryList) {
-				if (summary.getValue().equals(sample.getPosition())) {
+				if (summary.getValue().equals(getFieldForSample(summaryFieldName, sample))) {
 					summary.incCount();
 					break;
 				}
