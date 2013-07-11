@@ -3,10 +3,12 @@ package javaSingleton;
 public class Singleton {
 	private static Singleton instance;
 	
-	public final String x = "testing";
-
+	private String x, y;
+	
 	private Singleton() {
-		System.out.println("Singleton Init");
+		System.out.println("Singleton Init Started");
+		x = Db.getInstance().expensiveOperationOne();
+		System.out.println("Singleton Init Done");
 	}
 
 	public synchronized static Singleton getInstance() {
@@ -14,5 +16,16 @@ public class Singleton {
 			instance = new Singleton();
 		}
 		return instance;
+	}
+
+	public String getX() {
+		return x;
+	}
+
+	public synchronized String getY() {
+		if(y == null) {
+			y = Db.getInstance().expensiveOperationTwo();
+		}
+		return y;
 	}
 }

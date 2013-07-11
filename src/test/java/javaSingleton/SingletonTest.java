@@ -7,7 +7,9 @@ public class SingletonTest {
 	@Test
 	public void itShouldLazyInit() {
 	    System.out.println("this comes before Singleton init");
-	    System.out.println(Singleton.getInstance().x);
+	    Singleton instance = Singleton.getInstance();
+		System.out.println(instance.getX());
+	    System.out.println(instance.getY());
 	}
 
 }
