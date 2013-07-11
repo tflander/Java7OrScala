@@ -81,6 +81,9 @@ Packages:  [javaGroupAndFilter](https://github.com/tflander/Java7OrScala/tree/ma
 [scalaGroupAndFilter](https://github.com/tflander/Java7OrScala/tree/master/src/main/scala/scalaGroupAndFilter)
 [(tests)](https://github.com/tflander/Java7OrScala/tree/master/src/test/scala/scalaGroupAndFilter)
 
+Another common programming task is manipulating raw data.  A specific example is reading a list of rows from a database, then dynamically filtering and grouping the data based on user requests.
+
+This example shows how easy grouping and filtering is in Scala.  It also shows that you can pass expressions as parameters to be evaluated at the appropriate time in the called method.  This example also shows how scala simplifies testing where you have collections of input data and collections of expected results.
 
 To Do:
 ------
