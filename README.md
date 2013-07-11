@@ -31,6 +31,7 @@ Packages:  [javaSingleton](https://github.com/tflander/Java7OrScala/tree/master/
 
 Another example based on the work of Venkat Subramaniam.  He describes the Singleton pattern in Java as a pattern that takes one hour to learn and six months to debug.
 
+In addtion to demonstrating safe lazy initialization of a singleton, this example demonstrates safe lazy instantiation of member variables.
 
 To Be or Not To Be: Optional Things
 -------------------------------------
