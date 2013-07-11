@@ -130,20 +130,30 @@ public class GroupAndFilterTest {
 		assertEquals(1, womenAgainst.getCount());
 	}
 	
-	/*
-  it("can use generic method to filter by party, group by position, and summarize by sex") {
-    val summary = Aggregator.filterGroupByAndSummerize(_.party == "Democrat", "position", "sex", rawData)
-    
-    summary.get("For").head should be(Seq(
-      Summary("Male", 1),
-      Summary("Female", 2)))
-    
-    summary.get("Against").head should be(Seq(
-      Summary("Male", 1),
-      Summary("Female", 0)))
-  }
-
-	 */
+	@Test
+	public void itCanUseGenericMethodToFilterByPartyGroupByPositionAndSummarizeBySex() {
+		List<Sample> rawData = buildSampleData();
+		Map<String, List<Summary>> summary = Aggregator.filterGroupByAndSummerize("party", "Democrat", "position", "sex", rawData);
+		
+		List<Summary> forIt = summary.get("For");
+		List<Summary> againstIt = summary.get("Against");
+		
+		assertEquals(2, forIt.size());
+		assertEquals(2, againstIt.size());
+		Summary menFor = forIt.get(1);
+		Summary womenFor = forIt.get(0);
+		Summary menAgainst = againstIt.get(1);
+		Summary womenAgainst = againstIt.get(0);
+		assertEquals("Male", menFor.getValue());
+		assertEquals(1, menFor.getCount());
+		assertEquals("Female", womenFor.getValue());
+		assertEquals(2, womenFor.getCount());
+		assertEquals("Male", menAgainst.getValue());
+		assertEquals(1, menAgainst.getCount());
+		assertEquals("Female", womenAgainst.getValue());
+		assertEquals(0, womenAgainst.getCount());
+	}
+	
 	private List<Sample> buildSampleData() {
 		ArrayList<Sample> samples = new ArrayList<Sample>();
 		samples.add(new Sample("Democrat", "Male", "Against"));
@@ -156,5 +166,4 @@ public class GroupAndFilterTest {
 		samples.add(new Sample("Republican", "Female", "For"));
 		return samples;
 	}
-
 }

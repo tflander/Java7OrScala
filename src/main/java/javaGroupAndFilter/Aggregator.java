@@ -9,26 +9,32 @@ import java.util.Map;
 public class Aggregator {
 
 	public static Map<String, List<Summary>> femalesByParty(List<Sample> rawData) {
-		return filterGroupAndSummarize("sex", "Female", "party", rawData);
+		return filterGroupByAndSummerize("sex", "Female", "party", "position", rawData);
 	}
 
 	public static Map<String, List<Summary>> malesByParty(List<Sample> rawData) {
-		return filterGroupAndSummarize("sex", "Male", "party", rawData);
+		return filterGroupByAndSummerize("sex", "Male", "party", "position", rawData);
 	}
 
 	public static Map<String, List<Summary>> democratsBySex(List<Sample> rawData) {
-		return filterGroupAndSummarize("party", "Democrat", "sex", rawData);
+		return filterGroupByAndSummerize("party", "Democrat", "sex", "position", rawData);
 	}
 
 	public static Map<String, List<Summary>> republicansBySex(
 			List<Sample> rawData) {
-		return filterGroupAndSummarize("party", "Republican", "sex", rawData);
+		return filterGroupByAndSummerize("party", "Republican", "sex", "position", rawData);
 	}
 
 	public static Map<String, List<Summary>> groupByAndSummerize(String groupField,
 			String summaryField, List<Sample> rawData) {
 		List<String> summaryValues = getSummaryValues(summaryField, rawData);
 		return groupByField(groupField, summaryField, summaryValues, rawData);
+	}
+	
+	public static Map<String, List<Summary>> filterGroupByAndSummerize(String filterField, String filterValue, String groupField, String summaryField, List<Sample> rawData) {
+		List<Sample> filtered = filterByField(filterField, filterValue, rawData);
+		List<String> summaryValues = getSummaryValues(summaryField, rawData);
+		return groupByField(groupField, summaryField, summaryValues, filtered);
 	}
 	
 	private static List<String> getSummaryValues(String summaryField,
@@ -47,12 +53,6 @@ public class Aggregator {
 		return summaryValues;
 	}
 
-	private static Map<String, List<Summary>> filterGroupAndSummarize(String filterField, String filterValue, String groupField, List<Sample> rawData) {
-		List<Sample> filtered = filterByField(filterField, filterValue, rawData);
-		List<String> summaryValues = getSummaryValues("position", rawData);  // TODO:  make parameter
-		return groupByField(groupField, "position", summaryValues, filtered);
-	}
-	
 	private static Map<String, List<Summary>> groupByField(String groupFieldName, String summaryFieldName, List<String> summaryValues,
 			List<Sample> samples) {
 		HashMap<String, List<Summary>> grouped = new HashMap<String, List<Summary>>();
@@ -97,5 +97,4 @@ public class Aggregator {
 		throw new IllegalArgumentException("invalid sample field name "
 				+ fieldName);
 	}
-
 }
