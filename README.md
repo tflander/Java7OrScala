@@ -51,6 +51,7 @@ Packages:[javaDisplayList](https://github.com/tflander/Java7OrScala/tree/master/
 [scalaDisplayList](https://github.com/tflander/Java7OrScala/tree/master/src/main/scala/scalaDisplayList)
 [(tests)](https://github.com/tflander/Java7OrScala/tree/master/src/test/scala/scalaDisplayList)
 
+This example shows how you can use out-of-the-box list formatting in Scala.  It also shows how you can extend this formatting for your specific needs.  This example also uses the "monkey-patching/duck-punching" technique to attach custom formatting methods to the base List class.
 
 Family Ties: Polymorphic Behavior
 -----------------------------------
