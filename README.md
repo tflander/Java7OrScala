@@ -89,6 +89,6 @@ This example shows how easy grouping and filtering is in Scala.  It also shows t
 To Do:
 ------
   Neotoma: Collections
-  
+  List decorating  
 
 
