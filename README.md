@@ -45,11 +45,11 @@ Scala has an easy answer to a common problem in Java.  Bugs in Java often appear
 
 Cake Boss: List Decorating
 --------------------------
-Packages:[]()
-[(tests)]()
+Packages:[javaDisplayList](https://github.com/tflander/Java7OrScala/tree/master/src/main/java/javaDisplayList)
+[(tests)](https://github.com/tflander/Java7OrScala/tree/master/src/test/java/javaDisplayList)
 &
-[]()
-[(tests)]()
+[scalaDisplayList](https://github.com/tflander/Java7OrScala/tree/master/src/main/scala/scalaDisplayList)
+[(tests)](https://github.com/tflander/Java7OrScala/tree/master/src/test/scala/scalaDisplayList)
 
 
 Family Ties: Polymorphic Behavior
