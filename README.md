@@ -43,6 +43,15 @@ Packages:  [javaOption](https://github.com/tflander/Java7OrScala/tree/master/src
 
 Scala has an easy answer to a common problem in Java.  Bugs in Java often appear as a thrown NullPointerException.  This occurs when a developer does not expect a null referece to an object, but it happens.  Scala's easy answer is to never use null to represent optional data.  While there are patterns in Java to avoid nulls, it seems more fair for the example code to show the more common approach of adding null checks.
 
+Cake Boss: List Decorating
+--------------------------
+Packages:[]()
+[(tests)]()
+&
+[]()
+[(tests)]()
+
+
 Family Ties: Polymorphic Behavior
 -----------------------------------
 

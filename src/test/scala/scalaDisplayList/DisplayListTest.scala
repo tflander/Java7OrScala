@@ -6,14 +6,14 @@ class DisplayListTest extends FunSpec with ShouldMatchers {
 
   val teas = List("black", "green", "white")
 
-  describe("mkString with one parameter") {
+  describe("out-of-the-box list mkString with one parameter") {
 
     it("Should print list comma separated") {
       teas.mkString(sep = ", ") should be("black, green, white")
     }
   }
 
-  describe("mkString with three parameters") {
+  describe("out-of-the-box list mkString with multiple parameters") {
 
     it("Should print list with start and end") {
       teas.mkString(start = "types of teas: ", sep = ", ", end = ".") should be("types of teas: black, green, white.")
@@ -24,7 +24,7 @@ class DisplayListTest extends FunSpec with ShouldMatchers {
     }
   }
 
-  describe("sandbox") {
+  describe("PrettyListDisplayer tests") {
     val ld = new PrettyListDisplayer
     
     it("should format three or more strings") {

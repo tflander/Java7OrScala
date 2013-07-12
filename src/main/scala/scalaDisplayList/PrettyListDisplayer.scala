@@ -6,7 +6,6 @@ class PrettyListDisplayer {
       case x if x < 3 => list.mkString(" and ") + '.'
       case _ => list.dropRight(1).mkString(", ") + ", and " + list.takeRight(1).head + '.'
     } 
-    
 }
 
 class PrettyListDisplayerForPatching(list: List[String]) {
