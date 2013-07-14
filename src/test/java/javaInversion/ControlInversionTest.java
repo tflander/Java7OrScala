@@ -1,10 +1,9 @@
 package javaInversion;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
-import javaApiScriptOverJava.ApiBlockOverJava;
 import javaApiScriptOverJava.ApiOperationOneOverJava;
 import javaApiScriptOverJava.ApiOperationOverJava;
 import javaApiScriptOverJava.ApiOperationTwoOverJava;
@@ -13,14 +12,9 @@ import javaApiScriptOverJava.ConcreteApiBlockOverJava;
 import javaSupport.api.ApiStatus;
 import javaSupport.api.OperationResult;
 
-import org.junit.Before;
 import org.junit.Test;
 
 public class ControlInversionTest {
-
-	@Before
-	public void setUp() throws Exception {
-	}
 
 	@Test
 	public void itShouldAllowYouToScriptASingleApiCall() {

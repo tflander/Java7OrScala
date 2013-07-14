@@ -43,6 +43,20 @@ Packages:  [javaOption](https://github.com/tflander/Java7OrScala/tree/master/src
 
 Scala has an easy answer to a common problem in Java.  Bugs in Java often appear as a thrown NullPointerException.  This occurs when a developer does not expect a null referece to an object, but it happens.  Scala's easy answer is to never use null to represent optional data.  While there are patterns in Java to avoid nulls, it seems more fair for the example code to show the more common approach of adding null checks.
 
+Hollywood:  Inversion of control
+--------------------------------
+
+Packages:  [javaApiScriptOverJava](https://github.com/tflander/Java7OrScala/tree/master/src/main/java/javaApiScriptOverJava) 
+[(tests)](https://github.com/tflander/Java7OrScala/tree/master/src/test/java/javaInversion)
+& [scalaApiScriptOverJava](https://github.com/tflander/Java7OrScala/tree/master/src/main/scala/scalaApiScriptOverJava)
+[(tests)](https://github.com/tflander/Java7OrScala/tree/master/src/test/scala/scalaInversion)
+
+A common programming task is to take a generic API and wrap it for a specific purpose.  Also, many API's require some kind of initialization and/or tear-down that could be mishandled.  Programmers mitigate this risk through inversion of control.  
+
+This example takes a very simple API and hides the initialization and tear-down.  The original api is written in Java.  There are api wrappers written in both scala and java.  This example illustrates two approaches to api wrapping.  The first approach is an api scripting approach where you can script multiple calls to a properly initialized API, then have tear-down happen from the scripting engine.  The second approach allows you to execute a block of logic against a properly initialized API, then have tear-down happen from the API wrapper.
+
+For both approaches (scripting and block calls), we create a polymorphic Java model.  For scala, however, no object model is necessary.  You can script calls to the api using parameter place holders, and you can exucute an anonomous block of code be passing it to the API wrapper as a function.  This eliminates the need to create concrete classes in a polymorphic model just to pass code to the API wrapper.
+
 Cake Boss: List Decorating
 --------------------------
 Packages:[javaDisplayList](https://github.com/tflander/Java7OrScala/tree/master/src/main/java/javaDisplayList)
