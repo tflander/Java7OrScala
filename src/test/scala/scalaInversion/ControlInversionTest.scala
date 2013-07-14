@@ -21,6 +21,8 @@ class ControlInversionTest extends FunSpec with ShouldMatchers {
       api.expensiveInit()
       val result = api.operationOne("test")
       api.close()
+      result.getStatus should be(OK)
+      result.getMessage should be("operationOne performed on test")
     }
 
   }
