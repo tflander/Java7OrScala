@@ -5,11 +5,7 @@ import javaSupport.api.OriginalApi;
 
 object ApiWrapper {
   
-  def call(command: OriginalApi => OperationResult): OperationResult = {
-      return call(Seq(command)).head
-  }
-
-  def call(commands: Seq[OriginalApi => OperationResult]): Seq[OperationResult] = {
+  def call(commands: (OriginalApi => OperationResult)*): Seq[OperationResult] = {
     val api = new OriginalApi()
     val initResult = api.expensiveInit()
     
@@ -21,4 +17,12 @@ object ApiWrapper {
     val apiCloseResult = api.close()
     return results
   }
+  
+  def callBlock(commands: OriginalApi => Unit) = {
+    val api = new OriginalApi()
+    val initResult = api.expensiveInit()
+    commands(api)
+    val apiCloseResult = api.close()
+  }
+  
 }

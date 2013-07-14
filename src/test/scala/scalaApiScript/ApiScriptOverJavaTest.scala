@@ -10,8 +10,8 @@ class ApiScriptOverJavaTest extends FunSpec with ShouldMatchers {
   
   it("should allow you to pass script a single API call") {
 	  val result = ApiWrapper.call(_.operationOne("test"))
-	  result.getStatus should be(OK)
-	  result.getMessage should be("operationOne performed on test")
+	  result.head.getStatus should be(OK)
+	  result.head.getMessage should be("operationOne performed on test")
   }
   
   it("should allow you to pass multiple operations to the API") {
@@ -20,7 +20,7 @@ class ApiScriptOverJavaTest extends FunSpec with ShouldMatchers {
           _.operationTwo("testing", 123)
       )
       
-	  val results = ApiWrapper.call(operations)
+	  val results = ApiWrapper.call(operations: _*)
 	  
 	  results map (_.getStatus()) should be (Seq(OK, OK))
 	  results map (_.getMessage()) should be (Seq(
