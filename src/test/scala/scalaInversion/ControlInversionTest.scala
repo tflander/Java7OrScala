@@ -63,21 +63,56 @@ class ControlInversionTest extends FunSpec with ShouldMatchers {
 
   describe("more better inversion using function parameter") {
 
-    it("should execute an anonymous block of code") {
-      ApiWrapper.callBlock { api =>
-        val resultOne = api.operationOne("test")
-        val resultTwoOrNot = if (resultOne.getStatus() == OK) {
-          Some(api.operationTwo("testing", 123))
-        } else {
-          None
+    describe("demo of function types (used by ApiWrapper.callBlock())") {
+      it("demos function types using Java-like boilerplate") {
+
+        def foo(i: Int): String = {
+          return "test" + i
         }
-        resultOne.getStatus() should be(OK)
-        resultOne.getMessage() should be("operationOne performed on test")
-        val resultTwo = resultTwoOrNot.get
-        resultTwo.getStatus() should be(OK)
-        resultTwo.getMessage() should be("operationTwo performed on testing 123")
+
+        def bar: Int => String = foo(_)
+
+        def foobar: Int => String = intVal => {
+          "whoo" + intVal
+        }
+
+        foo(1) should be("test1")
+        bar(2) should be("test2")
+        foobar(3) should be("whoo3")
+      }
+
+      it("demos function types with boilerplate removed  (used by ApiWrapper.callBlock())") {
+        def foo(i: Int) = "test" + i
+        def bar = foo(_)
+        def foobar = (i: Int) => "whoo" + i
+
+        def foobar2 = (i: Int) => {
+          println("we can do anything in this anonymous block")
+          "whoo" + i
+        }
+
+        foo(1) should be("test1")
+        bar(2) should be("test2")
+        foobar(3) should be("whoo3")
+        foobar2(4) should be("whoo4")
       }
     }
-  }
 
+    it("should execute an anonymous block of code") {
+      val results = ApiWrapper.callBlock { api =>
+        val resultOne = api.operationOne("test")
+        if (resultOne.getStatus() == OK) {
+          val resultTwo = api.operationTwo("testing", 123)
+          Seq(resultOne, resultTwo)
+        } else {
+          Seq(resultOne)
+        }
+      }
+      
+      results map (_.getStatus()) should be(Seq(OK, OK))
+      results map (_.getMessage()) should be(Seq(
+        "operationOne performed on test",
+        "operationTwo performed on testing 123"))
+    }
+  }
 }
