@@ -97,9 +97,10 @@ class ControlInversionTest extends FunSpec with ShouldMatchers {
         foobar2(4) should be("whoo4")
       }
     }
+    
+    it("should execute a function using an initialized API") {
 
-    it("should execute an anonymous block of code") {
-      val results = ApiWrapper.callBlock { api =>
+      def useApi(api: OriginalApi): Seq[OperationResult] = {
         val resultOne = api.operationOne("test")
         if (resultOne.getStatus() == OK) {
           val resultTwo = api.operationTwo("testing", 123)
@@ -108,11 +109,32 @@ class ControlInversionTest extends FunSpec with ShouldMatchers {
           Seq(resultOne)
         }
       }
-      
+
+      val results = ApiWrapper.callBlock(api => useApi(api))
+
       results map (_.getStatus()) should be(Seq(OK, OK))
       results map (_.getMessage()) should be(Seq(
         "operationOne performed on test",
         "operationTwo performed on testing 123"))
     }
   }
+
+  it("should execute an anonymous block of code against an initialized API") {
+
+    val results = ApiWrapper.callBlock { api =>
+      val resultOne = api.operationOne("test")
+      if (resultOne.getStatus() == OK) {
+        val resultTwo = api.operationTwo("testing", 123)
+        Seq(resultOne, resultTwo)
+      } else {
+        Seq(resultOne)
+      }
+    }
+
+    results map (_.getStatus()) should be(Seq(OK, OK))
+    results map (_.getMessage()) should be(Seq(
+      "operationOne performed on test",
+      "operationTwo performed on testing 123"))
+  }
+
 }
