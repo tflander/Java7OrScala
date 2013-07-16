@@ -7,26 +7,6 @@ import javaSupport.api.OperationResult
 
 class ControlInversionTest extends FunSpec with ShouldMatchers {
 
-  describe("direct api tests (no inversion)") {
-
-    it("fails without initialization") {
-      val api = new OriginalApi()
-      intercept[IllegalStateException] {
-        api.operationOne("test")
-      }
-    }
-
-    it("works with initialization") {
-      val api = new OriginalApi()
-      api.expensiveInit()
-      val result = api.operationOne("test")
-      api.close()
-      result.getStatus should be(OK)
-      result.getMessage should be("operationOne performed on test")
-    }
-
-  }
-
   describe("inversion via API scripting with placeholder") {
 
     it("should allow you to pass script a single API call") {
@@ -63,41 +43,6 @@ class ControlInversionTest extends FunSpec with ShouldMatchers {
 
   describe("more better inversion using function parameter") {
 
-    describe("demo of function types (used by ApiWrapper.callBlock())") {
-      it("demos function types using Java-like boilerplate") {
-
-        def foo(i: Int): String = {
-          return "test" + i
-        }
-
-        def bar: Int => String = foo(_)
-
-        def foobar: Int => String = intVal => {
-          "whoo" + intVal
-        }
-
-        foo(1) should be("test1")
-        bar(2) should be("test2")
-        foobar(3) should be("whoo3")
-      }
-
-      it("demos function types with boilerplate removed  (used by ApiWrapper.callBlock())") {
-        def foo(i: Int) = "test" + i
-        def bar = foo(_)
-        def foobar = (i: Int) => "whoo" + i
-
-        def foobar2 = (i: Int) => {
-          println("we can do anything in this anonymous block")
-          "whoo" + i
-        }
-
-        foo(1) should be("test1")
-        bar(2) should be("test2")
-        foobar(3) should be("whoo3")
-        foobar2(4) should be("whoo4")
-      }
-    }
-    
     it("should execute a function using an initialized API") {
 
       def useApi(api: OriginalApi): Seq[OperationResult] = {

@@ -49,7 +49,7 @@ public class Car {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("Car(\"").append(model).append("\", ").append(miles).append(')');
+		sb.append("Car(").append(model).append(", ").append(miles).append(')');
 		return sb.toString();
 	}
 	

@@ -65,6 +65,6 @@ public class JavaBeanTest {
 	@Test
 	public void itHasAPrettyToString() throws Exception {
 		Car car = new Car("HHR", 40000);
-		assertEquals(car.toString(), "Car(\"HHR\", 40000)");
+		assertEquals("Car(HHR, 40000)", car.toString());
 	}	
 }
