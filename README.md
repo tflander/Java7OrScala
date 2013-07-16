@@ -78,6 +78,15 @@ Packages:
 
 This example demonstrates how useful it can be to package up related code into a single source code file.  Most of the code in the Java example is boilerplate code.  Boilerplate code is code that is necessary for the compiler, but not necessary to express the intent of the developer's design.  This example also demonstrates scala functions as first-class objects.
 
+After-Market Parts:  Java / Scala Interoperability
+--------------------------------------------------
+
+Packages:
+[Java tests over Scala API](https://github.com/tflander/Java7OrScala/tree/master/src/main/scala/scalaSupport/api)
+[(tests)](https://github.com/tflander/Java7OrScala/tree/master/src/test/java/javaOverScala)
+& [Scala tests over Java API](https://github.com/tflander/Java7OrScala/tree/master/src/main/java/javaSupport/api)
+[(tests)](https://github.com/tflander/Java7OrScala/tree/master/src/test/scala/scalaOverJava)
+
 Items below this line are too big and need to be split or abandoned
 ===================================================================
 
