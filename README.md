@@ -96,25 +96,6 @@ The second example is more relevant.  If you have Java code that works, you can 
 Items below this line are too big and need to be split or abandoned
 ===================================================================
 
-Penmanship: API Scripting
--------------------------
-
-Packages:  
-[javaApiScriptOverJava](https://github.com/tflander/Java7OrScala/tree/master/src/main/java/javaApiScriptOverJava)[(tests)](https://github.com/tflander/Java7OrScala/tree/master/src/test/java/javaApiScript)
-, 
-[scalaApiScriptOverJava](https://github.com/tflander/Java7OrScala/tree/master/src/main/scala/scalaApiScriptOverJava)
-[(tests)](https://github.com/tflander/Java7OrScala/tree/master/src/test/scala/scalaApiScript)
-, 
-[javaApiScriptOverScala](https://github.com/tflander/Java7OrScala/tree/master/src/main/java/javaApiScriptOverScala)
-[(tests)](https://github.com/tflander/Java7OrScala/tree/master/src/test/java/javaApiScript)
-, 
-[scalaApiScriptOverScala](https://github.com/tflander/Java7OrScala/tree/master/src/main/scala/scalaApiScriptOverScala)
-[(tests)](https://github.com/tflander/Java7OrScala/tree/master/src/test/scala/scalaApiScript)
-
-A common programming task is to take a generic API and wrap it for a specific purpose.  Also, many API's require some kind of initialization and/or tear-down that could be mishandled.  Programmers mitigate this risk through inversion of control.  
-
-This example takes a very simple API and hides the initialization and tear-down.  The api is written in both Java and Scala.  The api wrappers handle the four permutations of wrapper language and api language; java over java, scala over java, java over scala, and scala over scala.  This example illustrates how partially applied functions can avoid having to create a polymorphic Java model.  This example also shows how easy it is to integrate Scala and Java within a JVM.  You can consider Scala as simply another Java jar file included in your project.
-
 Groupies:  Aggregating and filtering data
 -----------------------------------------
 
