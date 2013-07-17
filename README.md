@@ -93,25 +93,17 @@ The first example is Java tests over a Scala API.  This demonstrates that if you
 
 The second example is more relevant.  If you have Java code that works, you can just use it in Scala.  Don't re-write the code in Scala unless the re-write create value.  You can also start using Scala as a testing framework over Java.
 
-Items below this line are too big and need to be split or abandoned
-===================================================================
+Censorship:  Filtering data
+---------------------------
 
-Groupies:  Aggregating and filtering data
------------------------------------------
+Packages: [FilterTest.scala](https://github.com/tflander/Java7OrScala/blob/master/src/test/scala/scalaFilter/FilterTest.scala)
 
-Packages:  [javaGroupAndFilter](https://github.com/tflander/Java7OrScala/tree/master/src/main/java/javaGroupAndFilter)
-[(tests)](https://github.com/tflander/Java7OrScala/tree/master/src/test/java/javaGroupAndFilter)
-&
-[scalaGroupAndFilter](https://github.com/tflander/Java7OrScala/tree/master/src/main/scala/scalaGroupAndFilter)
-[(tests)](https://github.com/tflander/Java7OrScala/tree/master/src/test/scala/scalaGroupAndFilter)
+Re-creating this filter example in Java was boring, so I didn't do it.  Filtering in Scala is simple enought (but powerful), so I didn't bother creating a utility in main.  We can just look at the test.
 
-Another common programming task is manipulating raw data.  A specific example is reading a list of rows from a database, then dynamically filtering and grouping the data based on user requests.
+Mob Rule:  Grouping data
+------------------------
 
-This example shows how easy grouping and filtering is in Scala.  It also shows that you can pass expressions as parameters to be evaluated at the appropriate time in the called method.  This example also shows how scala simplifies testing where you have collections of input data and collections of expected results.
+Packages: [GroupTest.scala](https://github.com/tflander/Java7OrScala/blob/master/src/test/scala/scalaGroup/GroupTest.scala)
 
-To Do:
-------
-  Neotoma: Collections
-  List decorating  
-
+Scala test to demo grouping in Scala
 
