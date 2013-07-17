@@ -52,58 +52,69 @@ class FilterTest extends FunSpec with ShouldMatchers {
     femaleDemocratsAgainst should be(1)
   }
 
-  it("refactor 3: Avoid mutible vars") {
+  describe("We want to use foldLeft()() to avoid mutable variables, so let's explore foldLeft()()") {
 
-    def sumFemaleDemocrats(list: Seq[PollSample]): (Int, Int) = list.foldLeft((0, 0))((summary, sample) => {
+    it("demonstrates methods with multiple parameter lists") {
+      def multiParamAdd(i: Int)(j: Int): Int = i + j
+      multiParamAdd(1)(2) should be(3)
+    }
+
+    it("demonstrates simple foldLeft usage (long version with no placeholders") {
+      val x = Seq(1, 2, 3).foldLeft(0)(
+        (accumulated, current) => accumulated + current)
+      x should be(6)
+    }
+
+    it("demonstrates simple foldLeft usage (short version with placeholders") {
+      Seq(1, 2, 3).foldLeft(0)(_ + _) should be(6)
+    }
+
+    it("demonstrates foldLeft on a sequence of Tuples") {
+
+      def addAndMult(accumulated: (Int, Int), current: (Int, Int)): (Int, Int) = {
+        (accumulated._1 + current._1, accumulated._2 * current._2)
+      }
+
+      val seqOfTuples = Seq((1, 1), (2, 2), (3, 3), (4, 4))
+      val initialValsForAddAndMult = (0, 1)
+      val addAndMultTuple: (Int, Int) = seqOfTuples.foldLeft(initialValsForAddAndMult)(addAndMult(_, _))
+      addAndMultTuple should be((10, 24))
+    }
+  }
+
+  it("refactor 3: Use FoldLeft to avoid mutible vars") {
+
+    def tallyForOrAgainst(forAndAgainst: (Int, Int), sample: PollSample): (Int, Int) = {
       if (sample.party == "Democrat" && sample.sex == "Female") {
         if (sample.position == "For") {
-          (summary._1 + 1, summary._2)
+          (forAndAgainst._1 + 1, forAndAgainst._2)
         } else {
-          (summary._1, summary._2 + 1)
+          (forAndAgainst._1, forAndAgainst._2 + 1)
         }
       } else {
-        (summary._1, summary._2)
+        (forAndAgainst._1, forAndAgainst._2)
       }
-    })
+    }
 
+    def sumFemaleDemocrats(list: Seq[PollSample]): (Int, Int) = list.foldLeft((0, 0))(tallyForOrAgainst(_, _))
     sumFemaleDemocrats(rawData) should be(3, 1)
   }
 
   it("refactor 4:  Remove clumsy if / else") {
 
-    def sumFemaleDemocrats(list: Seq[PollSample]): (Int, Int) = list.foldLeft((0, 0))((summary, sample) => {
-      val incVals = sample match {
+    def tallyForOrAgainst(forAndAgainst: (Int, Int), sample: PollSample): (Int, Int) = {
+      sample match {
         case x if (x.party == "Democrat" && x.sex == "Female") => {
           x.position match {
-            case "For" => (1, 0)
-            case _ => (0, 1)
+            case "For" => (forAndAgainst._1 + 1, forAndAgainst._2)
+            case _ => (forAndAgainst._1, forAndAgainst._2 + 1)
           }
         }
-        case _ => (0, 0)
+        case _ => forAndAgainst
       }
-      (summary._1 + incVals._1, summary._2 + incVals._2)
-    })
+    }
 
-    sumFemaleDemocrats(rawData) should be(3, 1)
-  }
-
-  it("refactor 5:  Extract nested match") {
-
-    def sumFemaleDemocrats(list: Seq[PollSample]): (Int, Int) = list.foldLeft((0, 0))((summary, sample) => {
-
-      def forOrAgainst(sample: PollSample) =
-        sample.position match {
-          case "For" => (1, 0)
-          case _ => (0, 1)
-        }
-
-      val incVals = sample match {
-        case x if (x.party == "Democrat" && x.sex == "Female") => forOrAgainst(x)
-        case _ => (0, 0)
-      }
-      (summary._1 + incVals._1, summary._2 + incVals._2)
-    })
-
+    def sumFemaleDemocrats(list: Seq[PollSample]): (Int, Int) = list.foldLeft((0, 0))(tallyForOrAgainst(_, _))
     sumFemaleDemocrats(rawData) should be(3, 1)
   }
 
