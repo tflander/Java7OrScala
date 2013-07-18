@@ -1,0 +1,48 @@
+.button {
+	margin: 0;
+}
+
+.columns {
+	padding: 0;
+}
+
+.color1 {
+	background-color: red
+}
+
+.color2 {
+	background-color: green
+}
+
+.color3 {
+	background-color: orange
+}
+
+.color4 {
+	background-color: blue
+}
+
+.color5 {
+	background-color: IndianRed
+}
+
+.color6 {
+	background-color: Fuchsia
+}
+
+.color7 {
+	background-color: purple
+}
+
+.color8 {
+	background-color: gold 
+}
+
+.color9 {
+	background-color: Indigo  
+}
+
+.used {
+	background-color:  azure;
+	border: none;
+}
