@@ -1,9 +1,27 @@
+body#tierOne {
+	background-image:url('../image/babyScooby.jpg');
+	background-size:100% 100%;
+	background-repeat:no-repeat;
+}
+
+body#tierTwo {
+	background-image:url('../image/goofyScooby.jpg');
+	background-size:100% 100%;
+	background-repeat:no-repeat;
+}
+
+body#tierThree {
+	background-image:url('../image/kingScooby.jpg');
+	background-size:100% 100%;
+	background-repeat:no-repeat;
+}
+
 .button {
-	margin: 0;
+	xmargin: 0;
 }
 
 .columns {
-	padding: 0;
+	xpadding: 0;
 }
 
 .color1 {
@@ -11,7 +29,7 @@
 }
 
 .color2 {
-	background-color: green
+	background-color: MediumSeaBlue
 }
 
 .color3 {
@@ -43,6 +61,5 @@
 }
 
 .used {
-	background-color:  azure;
-	border: none;
+	background-color:  green;
 }

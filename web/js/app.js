@@ -5,6 +5,12 @@ function toggleUsed(elem) {
    } else {
       elem.className = className.substring(0, className.indexOf("used")); 
    }
+   
+   var oldText = elem.getAttribute("data-oldText");
+   var currentText = elem.innerText;
+   elem.innerText = oldText;
+   elem.setAttribute("data-oldText", currentText)
+//   alert (currentText);
 }
 
 $(document).ready(function() {
