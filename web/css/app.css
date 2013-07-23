@@ -4,6 +4,10 @@ body#tierOne {
 	background-repeat:no-repeat;
 }
 
+section#content {
+	padding-top: 300px;
+}
+
 body#tierTwo {
 	background-image:url('../image/goofyScooby.jpg');
 	background-size:100% 100%;

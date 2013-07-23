@@ -10,11 +10,33 @@ function toggleUsed(elem) {
    var currentText = elem.innerText;
    elem.innerText = oldText;
    elem.setAttribute("data-oldText", currentText)
-//   alert (currentText);
 }
 
 $(document).ready(function() {
-   $(".button").click(function(){
-   	toggleUsed(this);
+   
+   $(".button#tierTwo").click(function(){
+	   	if(this.innerText.indexOf("Lock") > -1) {
+	   		$("body").attr("id", "tierOne");
+	   		$(".tier2").addClass("disabled");
+	   	} else {
+	   		$(".tier2").removeClass("disabled");
+	   		$("body").attr("id", "tierTwo");	   		
+	   	}
    })
+   
+   $(".button#tierThree").click(function(){
+	   	if(this.innerText.indexOf("Lock") > -1) {
+	   		$("body").attr("id", "tierTwo");
+	   		$(".tier3").addClass("disabled");
+	   	} else {
+	   		$(".tier3").removeClass("disabled");
+	   		$("body").attr("id", "tierThree");	   		
+	   	}
+   })
+   
+   $(".button").click(function(){
+		   if (this.className.indexOf("disabled") == -1) {
+			   toggleUsed(this);
+		   }
+	   })
 })
