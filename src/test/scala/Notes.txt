@@ -63,6 +63,12 @@ Family Ties: Polymorphic Behavior
 
 This example demonstrates how useful it can be to package up related code into a single source code file.  Most of the code in the Java example is boilerplate code.  Boilerplate code is code that is necessary for the compiler, but not necessary to express the intent of the developer's design.  This example also demonstrates scala functions as first-class objects.
 
+- Open the four links from the Readme.
+- Note the different files in Java for the polymorphic model.
+- Review the Java test & code
+- Review the Scala test & code
+
+
 After-Market Parts:  Java / Scala Interoperability
 --------------------------------------------------
 
@@ -72,13 +78,21 @@ The first example is Java tests over a Scala API.  This demonstrates that if you
 
 The second example is more relevant.  If you have Java code that works, you can just use it in Scala.  Don't re-write the code in Scala unless the re-write create value.  You can also start using Scala as a testing framework over Java.
 
+- Open the four links from the Readme.  Note the cross-refererencing between Scala and Java
+- Review the Scala test over the Java API (possible evolution path)
+- Review the Java test over the Scala API (alternate evolution path)
+  - Note that you might not want implicit conversions to Scala collections
+
 Censorship:  Filtering data
 ---------------------------
 
 Re-creating this filter example in Java was boring, so I didn't do it.  Filtering in Scala is simple enought (but powerful), so I didn't bother creating a utility in main.  We can just look at the test.
+
+- Review Scala test
 
 Mob Rule:  Grouping data
 ------------------------
 
 Scala test to demo grouping in Scala
 
+- Review Scala test

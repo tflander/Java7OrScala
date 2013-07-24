@@ -16,7 +16,7 @@ class BasicPolymorphismTest extends FunSpec with ShouldMatchers {
   }
 
   it("should allow you to define new animals") {
-    case class Zerg() extends Animal(speakMethod = () => "for the swarm")
+    case class Zerg() extends Animal(speak = () => "for the swarm")
     val animals = Seq(Dog(), Cat(), Donkey(), Zerg())
     for (animal <- animals) println(animal.speak)
     /*

@@ -82,10 +82,10 @@ After-Market Parts:  Java / Scala Interoperability
 --------------------------------------------------
 
 Packages:
-[Java tests over Scala API](https://github.com/tflander/Java7OrScala/tree/master/src/main/scala/scalaSupport/api)
-[(tests)](https://github.com/tflander/Java7OrScala/tree/master/src/test/java/javaOverScala)
-& [Scala tests over Java API](https://github.com/tflander/Java7OrScala/tree/master/src/main/java/javaSupport/api)
-[(tests)](https://github.com/tflander/Java7OrScala/tree/master/src/test/scala/scalaOverJava)
+[Scala API for Java Test](https://github.com/tflander/Java7OrScala/tree/master/src/main/scala/scalaSupport/api)
+[Java Test over Scala API](https://github.com/tflander/Java7OrScala/tree/master/src/test/java/javaOverScala)
+& [Java API for Scala Test](https://github.com/tflander/Java7OrScala/tree/master/src/main/java/javaSupport/api)
+[Scala test over Java API](https://github.com/tflander/Java7OrScala/tree/master/src/test/scala/scalaOverJava)
 
 This example shows how easy it is to integrate Scala and Java within a JVM.  You can consider Scala as simply another Java jar file included in your project.
 

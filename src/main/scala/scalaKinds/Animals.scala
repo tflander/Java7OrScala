@@ -1,8 +1,6 @@
 package scalaKinds
 
-class Animal(speakMethod: () => String) {
-  def speak = speakMethod()
-}
+class Animal(val speak: () => String)
 
 object Animals {
   case class Dog() extends Animal(() => "woof")
