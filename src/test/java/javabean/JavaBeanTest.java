@@ -1,15 +1,12 @@
 package javabean;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
-import org.junit.Before;
 import org.junit.Test;
 
 public class JavaBeanTest {
-
-	@Before
-	public void setUp() throws Exception {
-	}
 
 	@Test
 	public void itShouldRequireAModel() {
