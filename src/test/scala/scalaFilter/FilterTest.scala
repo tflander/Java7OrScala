@@ -88,8 +88,12 @@ class FilterTest extends FunSpec with ShouldMatchers {
     it("uses currying for syntactic sugar") {
       val numberFunction = Seq(1, 2, 3).foldLeft(0)_
       def sum(i: Int, j: Int) = i + j
+      def subtract(i: Int, j: Int) = i - j
+      def multiply(i: Int, j: Int) = i * j
 
       numberFunction(sum) should be(6)
+      numberFunction(subtract) should be(-6)
+      numberFunction(multiply) should be(0)  // not 1 * 2 * 3 = 6
     }
     
     it("demonstrates foldLeft on a sequence of Tuples") {
@@ -100,8 +104,8 @@ class FilterTest extends FunSpec with ShouldMatchers {
 
       val seqOfTuples = Seq((1, 1), (2, 2), (3, 3), (4, 4))
       val initialValsForAddAndMult = (0, 1)
-      def addAndMultTuples = seqOfTuples.foldLeft(initialValsForAddAndMult)_
-      addAndMultTuples(calc) should be((10, 24))
+      def addAndMultiplyTuples = seqOfTuples.foldLeft(initialValsForAddAndMult)_
+      addAndMultiplyTuples(calc) should be((10, 24))
     }
   }
 
@@ -127,8 +131,8 @@ class FilterTest extends FunSpec with ShouldMatchers {
 
     def tallyForOrAgainst(forAndAgainst: (Int, Int), sample: PollSample): (Int, Int) = {
       sample match {
-        case x if (x.party == "Democrat" && x.sex == "Female") => {
-          x.position match {
+        case pollSample if (pollSample.party == "Democrat" && pollSample.sex == "Female") => {
+          pollSample.position match {
             case "For" => (forAndAgainst._1 + 1, forAndAgainst._2)
             case _ => (forAndAgainst._1, forAndAgainst._2 + 1)
           }
@@ -144,10 +148,10 @@ class FilterTest extends FunSpec with ShouldMatchers {
 
   it("refactor 5:  currying for syntactic sugar") {
 
-    def femaleDemocrats(forAndAgainst: (Int, Int), sample: PollSample): (Int, Int) = {
+    def femaleDemocratsForAndAgainst(forAndAgainst: (Int, Int), sample: PollSample): (Int, Int) = {
       sample match {
-        case x if (x.party == "Democrat" && x.sex == "Female") => {
-          x.position match {
+        case pollSample if (pollSample.party == "Democrat" && pollSample.sex == "Female") => {
+          pollSample.position match {
             case "For" => (forAndAgainst._1 + 1, forAndAgainst._2)
             case _ => (forAndAgainst._1, forAndAgainst._2 + 1)
           }
@@ -158,17 +162,17 @@ class FilterTest extends FunSpec with ShouldMatchers {
 
     def summarize = rawData.foldLeft((0, 0))_
 
-    summarize(femaleDemocrats) should be(3, 1)
+    summarize(femaleDemocratsForAndAgainst) should be(3, 1)
   }
 
-  it("refactor 6:  more sugar") {
+  it("refactor 6:  extract filtering functionality") {
 
     def summarize = rawData.foldLeft((0, 0))_
 
     def forAndAgainst(filter: PollSample => Boolean)(totalSoFar: (Int, Int), sample: PollSample): (Int, Int) = {
       sample match {
-        case x if (filter(x)) => {
-          x.position match {
+        case pollSample if (filter(pollSample)) => {
+          pollSample.position match {
             case "For" => (totalSoFar._1 + 1, totalSoFar._2)
             case _ => (totalSoFar._1, totalSoFar._2 + 1)
           }
