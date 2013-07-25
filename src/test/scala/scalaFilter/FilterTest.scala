@@ -15,9 +15,9 @@ class FilterTest extends FunSpec with ShouldMatchers {
     PollSample(party = "Democrat", sex = "Female", position = "For"),
     PollSample(party = "Republican", sex = "Female", position = "For"),
     PollSample(party = "Democrat", sex = "Female", position = "Against"))
-    
-    def isFemaleDemocrat(pollSample: PollSample) = 
-      pollSample.party == "Democrat" && pollSample.sex == "Female"
+
+  def isFemaleDemocrat(pollSample: PollSample) =
+    pollSample.party == "Democrat" && pollSample.sex == "Female"
 
   it("should filter an unordered list and count results") {
     val femaleDemocrats = rawData.filter(isFemaleDemocrat(_))
@@ -29,7 +29,7 @@ class FilterTest extends FunSpec with ShouldMatchers {
   it("refactor 1:  Avoid iterating female democrats twice") {
     val femaleDemocrats = rawData.filter(isFemaleDemocrat(_))
     val forAndAgainst = femaleDemocrats.partition(_.position == "For")
-    
+
     forAndAgainst._1.size should be(3)
     forAndAgainst._2.size should be(1)
   }
@@ -55,11 +55,11 @@ class FilterTest extends FunSpec with ShouldMatchers {
 
   describe("We want to use foldLeft()() to avoid mutable variables, so let's explore foldLeft()()") {
 
-	def multiParamAdd(i: Int)(j: Int): Int = i + j
-	
+    def multiParamAdd(i: Int)(j: Int): Int = i + j
+
     it("demonstrates methods with multiple parameter lists (for currying)") {
       multiParamAdd(1)(2) should be(3)
-      
+
       def addToTen: Int => Int = multiParamAdd(10)_
       addToTen(5) should be(15)
     }
@@ -71,30 +71,37 @@ class FilterTest extends FunSpec with ShouldMatchers {
     }
 
     it("can take an anonymous block for the 2nd parameter list") {
-      val x = Seq(1, 2, 3).foldLeft(0) { (accumulated, current) => 
+      val x = Seq(1, 2, 3).foldLeft(0) { (accumulated, current) =>
         multiParamAdd(accumulated)(current)
       }
       x should be(6)
     }
-    
+
     it("demonstrates simple foldLeft usage using our multiParamAdd") {
       Seq(1, 2, 3).foldLeft(0)(multiParamAdd(_)(_)) should be(6)
     }
-    
+
     it("demonstrates simple foldLeft usage (short version with placeholders") {
       Seq(1, 2, 3).foldLeft(0)(_ + _) should be(6)
     }
 
+    it("uses currying for syntactic sugar") {
+      val numberFunction = Seq(1, 2, 3).foldLeft(0)_
+      def sum(i: Int, j: Int) = i + j
+
+      numberFunction(sum) should be(6)
+    }
+    
     it("demonstrates foldLeft on a sequence of Tuples") {
 
-      def addAndMult(accumulated: (Int, Int), current: (Int, Int)): (Int, Int) = {
+      def calc(accumulated: (Int, Int), current: (Int, Int)): (Int, Int) = {
         (accumulated._1 + current._1, accumulated._2 * current._2)
       }
 
       val seqOfTuples = Seq((1, 1), (2, 2), (3, 3), (4, 4))
       val initialValsForAddAndMult = (0, 1)
-      val addAndMultTuple: (Int, Int) = seqOfTuples.foldLeft(initialValsForAddAndMult)(addAndMult(_, _))
-      addAndMultTuple should be((10, 24))
+      def addAndMultTuples = seqOfTuples.foldLeft(initialValsForAddAndMult)_
+      addAndMultTuples(calc) should be((10, 24))
     }
   }
 
@@ -130,9 +137,55 @@ class FilterTest extends FunSpec with ShouldMatchers {
       }
     }
 
-    def femaleDemocratsForAndAgainst(list: Seq[PollSample]): (Int, Int) = 
+    def femaleDemocratsForAndAgainst(list: Seq[PollSample]): (Int, Int) =
       list.foldLeft((0, 0))(tallyForOrAgainst(_, _))
     femaleDemocratsForAndAgainst(rawData) should be(3, 1)
+  }
+
+  it("refactor 5:  currying for syntactic sugar") {
+
+    def femaleDemocrats(forAndAgainst: (Int, Int), sample: PollSample): (Int, Int) = {
+      sample match {
+        case x if (x.party == "Democrat" && x.sex == "Female") => {
+          x.position match {
+            case "For" => (forAndAgainst._1 + 1, forAndAgainst._2)
+            case _ => (forAndAgainst._1, forAndAgainst._2 + 1)
+          }
+        }
+        case _ => forAndAgainst
+      }
+    }
+
+    def summarize = rawData.foldLeft((0, 0))_
+
+    summarize(femaleDemocrats) should be(3, 1)
+  }
+
+  it("refactor 6:  more sugar") {
+
+    def summarize = rawData.foldLeft((0, 0))_
+
+    def forAndAgainst(filter: PollSample => Boolean)(totalSoFar: (Int, Int), sample: PollSample): (Int, Int) = {
+      sample match {
+        case x if (filter(x)) => {
+          x.position match {
+            case "For" => (totalSoFar._1 + 1, totalSoFar._2)
+            case _ => (totalSoFar._1, totalSoFar._2 + 1)
+          }
+        }
+        case _ => totalSoFar
+      }
+    }
+
+    def femaleDemocrats(sample: PollSample) = sample.party == "Democrat" && sample.sex == "Female"
+    def maleDemocrats(sample: PollSample) = sample.party == "Democrat" && sample.sex == "Male"
+    def femaleRepublicans(sample: PollSample) = sample.party == "Republican" && sample.sex == "Female"
+    def maleRepublicans(sample: PollSample) = sample.party == "Republican" && sample.sex == "Male"
+
+    summarize(forAndAgainst(femaleDemocrats)) should be(3, 1)
+    summarize(forAndAgainst(maleDemocrats)) should be(1, 1)
+    summarize(forAndAgainst(femaleRepublicans)) should be(1, 1)
+    summarize(forAndAgainst(maleRepublicans)) should be(0, 2)
   }
 
 }
