@@ -1,0 +1,3 @@
+- fix hollywood
+- talk to Dan S on inversion of control.
+- rehearse presentation over eclipse
