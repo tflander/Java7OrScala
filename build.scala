@@ -1,7 +1,7 @@
-import sbt._
+import scala.sbt._
 import Keys._
 
-object HelloBuild extends Build {
+object Java7OrScalaBuild extends Build {
     lazy val root = Project(id = "Java7OrScala",
                             base = file(".")) aggregate(
                                AfterMarketParts,
@@ -15,32 +15,33 @@ object HelloBuild extends Build {
                                ToBeOrNotToBe
                             )
 
-    lazy val foo = Project(id = "AfterMarketParts",
+    lazy val amp = Project(id = "AfterMarketParts",
                            base = file("AfterMarketParts"))
 
-    lazy val bar = Project(id = "CakeBoss",
+    lazy val cb = Project(id = "CakeBoss",
                            base = file("CakeBoss"))
 
-    lazy val bar = Project(id = "Censorship",
+    lazy val c = Project(id = "Censorship",
                            base = file("Censorship"))
 
-    lazy val bar = Project(id = "FamilyTies",
+    lazy val ft = Project(id = "FamilyTies",
                            base = file("FamilyTies"))
 
-    lazy val bar = Project(id = "MobRule",
+    lazy val h = Project(id = "hollywood",
+                           base = file("hollywood"))
+
+    lazy val mr = Project(id = "MobRule",
                            base = file("MobRule"))
 
-    lazy val bar = Project(id = "MusicalFruit",
+    lazy val mf = Project(id = "MusicalFruit",
                            base = file("MusicalFruit"))
 
-    lazy val bar = Project(id = "OnlyTheLonley",
+    lazy val otl = Project(id = "OnlyTheLonley",
                            base = file("OnlyTheLonley"))
 
-    lazy val bar = Project(id = "",
+    lazy val tbontb = Project(id = "",
                            base = file("ToBeOrNotToBe"))
 
-    lazy val bar = Project(id = "",
-                           base = file("ToBeOrNotToBe"))
 
 
 }
