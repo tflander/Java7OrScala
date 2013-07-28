@@ -1,9 +1,9 @@
 package javaInversion;
 
-import static javaSupport.api.ApiStatus.OK;
+import static api.ApiStatus.OK;
 import static org.junit.Assert.assertEquals;
-import javaSupport.api.OperationResult;
-import javaSupport.api.OriginalApi;
+import api.OperationResult;
+import api.OriginalApi;
 
 import org.junit.Before;
 import org.junit.Test;

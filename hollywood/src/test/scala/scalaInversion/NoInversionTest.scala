@@ -1,7 +1,7 @@
 package scalaInversion
 import org.scalatest._
-import javaSupport.api.OriginalApi
-import javaSupport.api.ApiStatus._
+import api.OriginalApi
+import api.ApiStatus._
 
 class NoInversionTest extends FunSpec with ShouldMatchers {
 

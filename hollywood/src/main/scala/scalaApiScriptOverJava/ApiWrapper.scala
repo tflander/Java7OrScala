@@ -1,7 +1,7 @@
 package scalaApiScriptOverJava
 
-import javaSupport.api.OperationResult;
-import javaSupport.api.OriginalApi;
+import api.OperationResult;
+import api.OriginalApi;
 
 object ApiWrapper {
   

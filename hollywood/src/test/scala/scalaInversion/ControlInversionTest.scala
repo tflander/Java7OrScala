@@ -1,9 +1,9 @@
 package scalaInversion
 import org.scalatest._
-import javaSupport.api.ApiStatus._
+import api.ApiStatus._
 import scalaApiScriptOverJava.ApiWrapper
-import javaSupport.api.OriginalApi
-import javaSupport.api.OperationResult
+import api.OriginalApi
+import api.OperationResult
 
 class ControlInversionTest extends FunSpec with ShouldMatchers {
 
