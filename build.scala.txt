@@ -1,10 +1,47 @@
-scalaVersion := "2.10.2"
+import scala.sbt._
+import Keys._
 
-libraryDependencies += "org.scalatest" % "scalatest_2.10" % "2.0.M5b" % "test"
+object Java7OrScalaBuild extends Build {
+    lazy val root = Project(id = "Java7OrScala",
+                            base = file(".")) aggregate(
+                               AfterMarketParts,
+                               CakeBoss,
+                               Censorship,
+                               FamilyTies,
+                               hollywood,
+                               MobRule,
+                               MusicalFruit,
+                               OnlyTheLonley,
+                               ToBeOrNotToBe
+                            )
 
-libraryDependencies += "junit" % "junit" % "4.11" % "test"
+    lazy val amp = Project(id = "AfterMarketParts",
+                           base = file("AfterMarketParts"))
 
-libraryDependencies += "com.novocode" % "junit-interface" % "0.10-M4" % "test"
+    lazy val cb = Project(id = "CakeBoss",
+                           base = file("CakeBoss"))
 
-testOptions += Tests.Argument(TestFrameworks.JUnit, "-q", "-v")
- 
+    lazy val c = Project(id = "Censorship",
+                           base = file("Censorship"))
+
+    lazy val ft = Project(id = "FamilyTies",
+                           base = file("FamilyTies"))
+
+    lazy val h = Project(id = "hollywood",
+                           base = file("hollywood"))
+
+    lazy val mr = Project(id = "MobRule",
+                           base = file("MobRule"))
+
+    lazy val mf = Project(id = "MusicalFruit",
+                           base = file("MusicalFruit"))
+
+    lazy val otl = Project(id = "OnlyTheLonley",
+                           base = file("OnlyTheLonley"))
+
+    lazy val tbontb = Project(id = "",
+                           base = file("ToBeOrNotToBe"))
+
+
+
+}
