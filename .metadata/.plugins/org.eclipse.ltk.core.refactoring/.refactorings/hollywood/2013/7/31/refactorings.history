@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete 3 elements from project &apos;hollywood&apos;&#x0D;&#x0A;- Original project: &apos;hollywood&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     javaInversion.ApiOperationOneOverJava.java&#x0D;&#x0A;     javaInversion.ApiOperationOverJava.java&#x0D;&#x0A;     javaInversion.ApiOperationTwoOverJava.java" description="Delete elements" element1="/src\/main\/java&lt;javaInversion{ApiOperationOneOverJava.java" element2="/src\/main\/java&lt;javaInversion{ApiOperationTwoOverJava.java" element3="/src\/main\/java&lt;javaInversion{ApiOperationOverJava.java" elements="3" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1375125238675" subPackages="false" version="1.0"/>
+</session>
