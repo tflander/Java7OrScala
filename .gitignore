@@ -2,5 +2,6 @@ target
 .cache
 .classpath
 .project
+.metadata
 project/target
 project/project
