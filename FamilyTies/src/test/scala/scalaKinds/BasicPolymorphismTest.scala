@@ -1,6 +1,5 @@
 package scalaKinds
 import org.scalatest._
-import scalaKinds.Animals._
 
 class BasicPolymorphismTest extends FunSpec with ShouldMatchers {
   it("should make animal sounds") {
